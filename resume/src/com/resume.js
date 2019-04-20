@@ -54,7 +54,7 @@ class App extends Component {
                 <div className="title">Experience</div>
                     <div className="item">
                         <p className="exp">
-                              November 2016 – Present
+                              November 2016 – March 2019
                         <br/> <span>•</span> <b>Software Engineer</b> 
                         <br/> Bombardier Transportation Signal (Thailand) Ltd.
                         <br/> (Worldwide Company)
