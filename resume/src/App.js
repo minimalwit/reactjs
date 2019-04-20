@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Resume from './com/rsm'
+import Resume from './com/resume'
 
 
 class App extends Component {

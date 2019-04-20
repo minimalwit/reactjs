@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import me from '../me_resize.png'
-import '../css/rsm.css';
+import '../css/resume.css';
 
 class App extends Component {
   render() {
