@@ -1,0 +1,114 @@
+
+.container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+.item-left {
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    width: 40%;
+  }
+  
+.item-right {
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+    width: 60%;
+}
+
+@media (max-width: 765px){
+    .container {
+        display: flex;
+        flex-direction: column;
+    }
+    .item-left{
+        width: 100%
+    }
+    .item-right{
+        width: 100%
+    }
+}
+/* .content {
+    background-color: #000000;
+    width: 960px;
+    display: flex;
+    flex-direction: row;
+    margin-left: 10px;
+    margin-right: 10px;
+} */
+.item {
+    background-color: #000000;
+    flex-direction: column;
+    flex-grow: 1
+}
+
+.picture {
+    margin-top: 5%;
+
+}
+
+.skillSet {
+    text-align: left;
+    margin-left: 10%;
+
+}
+
+/* Make sure that padding behaves as expected */
+* {box-sizing:border-box}
+
+/* Container for skill bars */
+.skill-container {
+    width: 100%; /* Full width */
+    background-color: #686868; /* Grey background */
+}
+
+.skills {
+    text-align: right; /* Right-align text */
+    padding: 10px; /* Add some padding */
+    color: white; /* White text color */
+}
+
+.python {width: 80%; background-color: #bfb8ff;}   
+.java   {width: 70%; background-color: #cca3ff;} 
+.js     {width: 65%; background-color: #dabcff;} 
+.html   {width: 50%; background-color: #e5daff;} 
+.css    {width: 50%; background-color: #e5d0ff;} 
+.php    {width: 20%; background-color: #e5d0ff;} 
+  
+.title {
+    text-align: center;
+    font-size: 120%;
+    font-weight: bold;
+    margin-top: 10%;
+}
+
+.em {
+    text-align: center;
+    font-weight: bold;
+}
+
+.exp {
+    text-align: left;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.span {
+    font-weight: bold;
+    font-size: 200%;
+    color : white;
+}
+
