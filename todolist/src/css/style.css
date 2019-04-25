@@ -1,0 +1,135 @@
+.App {
+    margin-left: 10%;
+    margin-right:10%;
+  }
+
+.container{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    border-bottom: solid 3px skyblue;
+    margin-bottom: 32px;
+}
+
+.header div{
+    flex-grow: 1;
+}
+
+.header div:nth-child(2){
+    text-align: right;
+}
+
+h1{
+    font-size: 3rem;
+}
+.addBtn{
+    padding:0.3em 0.9em;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: black;
+    background: white;
+    border-radius: 10px;
+    border:1;
+    border-color: black;
+    border-width: thin;
+    box-shadow: none;
+}
+
+.Bar-item {
+    display: flex;
+    flex-grow: 1;
+}
+
+
+.label-top{
+    display: flex;
+}
+
+.label-top div{
+    flex-grow: 1;
+}
+
+ul{
+    padding:0;
+}
+
+span{
+    font-weight: bold;
+    color: black;
+}
+
+li{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    height: 40px;
+    list-style: none;
+}
+
+.list{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+.task_content{
+    border: none;
+    padding :10px;
+    width: 100%;
+}
+
+.task_content:focus{
+    outline: none;
+    border-bottom: solid 2px skyblue;
+}
+
+.right{
+    text-align: right;
+    
+}
+.show_btn{
+    background-color: #ffffff;
+    color: #3c8aff;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    border: 0;
+    box-shadow: none;
+}
+
+.show_btn:focus{
+    outline: none;
+}
+
+.show_btn:hover{
+    background: skyblue;
+    color: white
+}
+
+.show{
+    display: block
+}
+
+.del_btn{
+    border: none;
+    font-weight: bolder;
+    font-size: 1.01em;
+}
+
+.notshow{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+    .container{
+        padding:20px;
+        width: 100%;
+    }
+  }
