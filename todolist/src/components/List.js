@@ -12,7 +12,7 @@ class List extends Component {
             <div>
                 <ul>
                     {list.map((currentList,index) => 
-                            <ListItem onDeleteTask={onDeleteTask} onEditTask={onEditTask} onToggleListItem={onToggleListItem} data={currentList} key={index} val={currentList.title}></ListItem>
+                            <ListItem onDeleteTask={onDeleteTask} onEditTask={onEditTask} onToggleListItem={onToggleListItem} data={currentList} key={currentList.id} val={currentList.id}></ListItem>
                         )}
                 </ul>
             </div> 

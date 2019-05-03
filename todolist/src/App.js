@@ -54,9 +54,9 @@ class App extends Component {
 
   onToggleListItem = (e) => {
       let target = e.target
-      let val = target.getAttribute('val')
+      let val = parseInt(target.getAttribute('val'))
       const lists = this.state.list
-      const index = lists.findIndex(list => list.title === val);
+      const index = lists.findIndex((list) => list.id === val)
       let currentState = lists[index].isCompleted
       lists[index].isCompleted = !currentState
       this.setState({list: lists})
@@ -65,12 +65,12 @@ class App extends Component {
   onEditTask = (e) => {
     let target = e.target
     let value = target.value
-    
-    let val = target.getAttribute('val')
+    let val = parseInt(target.getAttribute('val'))  // this may cast type in string
     const lists = this.state.list
-    const index = lists.findIndex(list => list.title === val);
-    lists[index].title = value
-    
+    const index = lists.findIndex((list) => list.id === val)
+    lists[index].title=value
+    // const selectedItem = lists.find((list) => list.id === val)
+    // selectedItem.title = value
     this.setState({
       list:lists
     })
@@ -78,7 +78,7 @@ class App extends Component {
 
   onDeleteTask = (val) => {
     const lists = this.state.list;
-    const index = lists.findIndex(list => list.title === val);
+    const index = lists.findIndex(list => list.id === val);
     lists.splice(index,1)
     this.setState({
       list:lists
