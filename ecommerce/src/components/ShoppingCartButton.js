@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from  "react-router-dom"
+import { withRouter } from  'react-router-dom'
 import { DropButton, Box, Stack, Button} from 'grommet';
 import { Shop } from 'grommet-icons'
 import { connect } from 'react-redux';
@@ -19,14 +19,12 @@ class ShoppingCartButton extends Component {
           <Box>
             <CartItemList />
             <Box pad="small">
-              <withRouter>
                 <Button 
                   primary 
                   onClick={()=> this.props.history.push('/checkout')}
                 >
                   Checkout
                 </Button>
-              </withRouter>
             </Box>
           </Box>
         }
@@ -54,4 +52,4 @@ const mapStateToProps = state => {
     cartLength: state.cart.cartItems.length
   }
 }
-export default connect(mapStateToProps)(ShoppingCartButton)
+export default connect(mapStateToProps)(withRouter(ShoppingCartButton))

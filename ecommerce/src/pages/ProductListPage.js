@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Grommet, Box, TextInput } from 'grommet'
+import { Box, TextInput } from 'grommet'
 import ProductList from '../components/ProductList'
 
 export default class ProductListPage extends Component {
@@ -12,7 +12,6 @@ export default class ProductListPage extends Component {
     return (
       // move content from app.js to hear
 
-      <Grommet plain full>
         <Box
           direction="row"
           pad="medium"
@@ -25,7 +24,7 @@ export default class ProductListPage extends Component {
             <ProductList search={this.state.query} />
           </Box>
         </Box>
-      </Grommet>
+
     )
   }
 }

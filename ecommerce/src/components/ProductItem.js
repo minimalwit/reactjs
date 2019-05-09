@@ -15,9 +15,14 @@ class ProductItem extends React.Component {
     console.log('Add to cart')
     const {
       addItem,
-      name
+      // name,
+      id,
+      // cartItems,
     } = this.props;
-    addItem(name)
+
+    console.log(id)
+    addItem(id)
+    // addItem(name)
   }
   render() {
     const { name, description, image, price } = this.props
@@ -59,7 +64,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    addItem: dispatch.cart.addItem
+    addItem: dispatch.cart.addCartItemsAsync
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(ProductItem)
