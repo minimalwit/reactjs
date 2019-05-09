@@ -2,31 +2,30 @@ import React, { Component } from 'react';
 import { Grommet, Box, TextInput } from 'grommet'
 import AppBar from './components/AppBar'
 import ProductList from './components/ProductList'
+import ProductListPage from './pages/ProductListPage'
+import CheckoutPage from './pages/CheckoutPage'
 import './App.css';
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom"
 
 class App extends Component {
-  state = {
-    query: ''
-  }
+
   render() {
     return (
-      <Grommet plain full>
-        <Box direction="column" fill>
-          <AppBar />
-          <Box
-            direction="row"
-            pad="medium"
-            fill
-          >
-            <Box width="medium">
-              <TextInput onChange={(e) => this.setState({query: e.target.value})}/>
-            </Box>
-            <Box flex>
-              <ProductList search={this.state.query}/>
-            </Box>
+      <Router>
+        <Grommet plain full>
+          <Box direction="column" fill>
+            <AppBar />
+            <Switch>
+              <Route path="/" exact component={ProductListPage}/>
+              <Route path="/c" exact component={CheckoutPage}/>
+              <Route path="/checkout" exact component={CheckoutPage}/>
+              <Route path="**" component={() => <h1>Not found</h1>} /> 
+            </Switch>
+            
           </Box>
-        </Box>
-      </Grommet>
+        </Grommet>
+      </Router>
+      
     );
   }
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { DropButton, Box, Stack } from 'grommet';
+import { withRouter } from  "react-router-dom"
+import { DropButton, Box, Stack, Button} from 'grommet';
 import { Shop } from 'grommet-icons'
 import { connect } from 'react-redux';
 import CartItemList from './CartItemList';
@@ -17,6 +18,16 @@ class ShoppingCartButton extends Component {
         dropContent={
           <Box>
             <CartItemList />
+            <Box pad="small">
+              <withRouter>
+                <Button 
+                  primary 
+                  onClick={()=> this.props.history.push('/checkout')}
+                >
+                  Checkout
+                </Button>
+              </withRouter>
+            </Box>
           </Box>
         }
       >
