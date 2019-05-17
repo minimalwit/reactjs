@@ -2,12 +2,10 @@ import React, { Component } from 'react'
 import { Box, Button, Grid } from 'grommet';
 import { FormClose } from 'grommet-icons';
 import { connect } from 'react-redux';
-// var _ = require('lodash');
 
-
+import store from '../store';
 class CartItemList extends Component {
 
-  
   handleDeleteToCart = (id) => {
     console.log('Delete from cart')
     const {
@@ -17,11 +15,14 @@ class CartItemList extends Component {
     
   }
 
-
   componentDidUpdate(prevProps, prevState) {
-    if(prevState !== this.state) {
+    // if(prevState !== this.state) {
+    if(prevState) {
       console.log('send Post to update cart')
-      this.updateCart()
+      const {
+        updateCart,
+      } = this.props;
+      updateCart()
     }
 
   }
@@ -29,6 +30,7 @@ class CartItemList extends Component {
   render() {
     const {
       cartItems,
+      totalPrice,
     } = this.props
 
     return (
@@ -45,29 +47,40 @@ class CartItemList extends Component {
                   rows={["xxsmall"]}
                   gap="xxsmall"
                 >
-                  <Box gridArea="left" pad="small">
+                  <Box gridArea="left" pad="small" border="bottom">
                     {item.name} x {item.amount}
                   </Box>
+                  
                   <Button 
                     icon={<FormClose  />}
                     gridArea="right"
-                    onClick={(e) => this.handleDeleteToCart(item.productId)}
+                    onClick={(e) => this.handleDeleteToCart(item.id)}
                   />
                 </Grid>
-                           
           ))}
+          <Box width="small" pad="small" border="bottom">
+            {totalPrice} $USD
+          </Box>
       </Box>
     )
   }
 }
 const mapStateToProps = state => {
+  const getTotal = store.select.cart.getTotal 
+  // const total = state.cart.cartItems.map(o => o.price)//.reduce((total, b) => total + (b.price))
+  // console.log(state.cart.cartItems)
+  // console.log(total)
   return {
     cartItems: state.cart.cartItems,
+    totalPrice: (getTotal(state.cart.cartItems)*0.01).toFixed(2)
+    // totalPrice: state.cart.totalPrice
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    deleteItem: dispatch.cart.deleteItem
+    // deleteItem: dispatch.cart.deleteItem,
+    deleteItem: dispatch.cart.deleteCartItemsAsync,
+    updateCart: dispatch.cart.getCartItemsAsync
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(CartItemList)

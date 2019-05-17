@@ -1,5 +1,4 @@
 import request from '../../utils/request'
-// var _ = require('lodash');
 
 export const cart = {
   state: {
@@ -45,33 +44,34 @@ export const cart = {
       // console.log("delete jaa")
       // console.log(state)
       // console.log(payload)
+      // ตัว delete ผมแนะนำทำเป็น reduce item mode หมดเลยก็ได้นะครับ 
+      // แล้วตอนจบ filter เอา product ที่ amount <= 0 ออก
       const item = state.cartItems.find(o => o.productId === payload);
       // console.log(item)
-      let mode=""
+      // let mode=""
       if (item) {
         const cartItems = state.cartItems.map(o => {
-          if (o.productId === payload && o.amount > 1) {
-            mode="REDUCE_ITEM"
+          if (o.productId === payload) {
+            // mode="REDUCE_ITEM"
             return {
               ...o,
               amount: o.amount - 1
             }
           }
-          if (o.productId === payload && o.amount === 1){
-            mode="DELETE_ITEM"
-            return true
-          }
+          // if (o.productId === payload && o.amount === 1){
+          //   mode="DELETE_ITEM"
+          //   return true
+          // }
           return o
         })
-
-        
-        if (mode==="REDUCE_ITEM") {
-          return {
-            ...state,
-            cartItems: cartItems
-          }
-        }
-        const deleledItemsState = state.cartItems.filter(o => o!== item)
+        // if (mode==="REDUCE_ITEM") {
+        //   return {
+        //     ...state,
+        //     cartItems: cartItems
+        //   }
+        // }
+        // const deleledItemsState = cartItems.filter(o => o !== item)
+        const deleledItemsState = cartItems.filter(o => o.amount > 0)
         console.log("newState")
         console.log(deleledItemsState)
         return {
@@ -108,23 +108,27 @@ export const cart = {
     //   await new Promise(resolve => setTimeout(resolve, 1000))
     //   dispatch.count.increment(payload)
     // }
-    
-    async addCartItemsAsync (id) {
-      // {
-      //   "data": {
-      //     "type": "cart_item",
-      //     "id": "9b5ae037-04bb-4f98-8e6b-c02411047f31",
-      //     "quantity": 1
-      //   }
-      // }
+    async deleteCartItemsAsync (id) {
+      // delete  
+      // https://api.moltin.com/v2/carts/123456/items/{{cartItemID}}
       const header = {
         headers: { 
           'Accept': 'application/json',
           'Content-Type': 'application/json' 
         },  
       }
-      
+      const deletemsg = `https://api.moltin.com/v2/carts/123456/items/${id}`
+      await request.delete(deletemsg,header)
+      this.getCartItemsAsync()
+    },
 
+    async addCartItemsAsync (id) {
+      const header = {
+        headers: { 
+          'Accept': 'application/json',
+          'Content-Type': 'application/json' 
+        },  
+      }
       const updateCartInfo = {
         method: 'POST',
         "data": {
@@ -136,16 +140,6 @@ export const cart = {
       await request.post ('/carts/123456/items',updateCartInfo,header)
       // const res = await request.get('/carts/123456/items',updateCartInfo)
       this.getCartItemsAsync()
-      // const res = await request.get(searchvalue)
-      // const cleanData = res.data.data.map((item) => {
-      //   return {
-      //     id: item.id,
-      //     productId: item.product_id,
-      //     name: item.name,
-      //     amount: item.quantity,
-      //   }
-      // })
-      // dispatch.cart.setCartItems(cleanData)
     },
 
     async getCartItemsAsync() {
@@ -158,14 +152,33 @@ export const cart = {
           amount: item.quantity,
           name: item.name,
           image: 'https://via.placeholder.com/300x400.png',
-          totalPrice: item.meta.display_price.with_tax.value.formatted,
-          pricePerUnit: item.meta.display_price.with_tax.unit.formatted,
+          price: item.meta.display_price.with_tax.value.formatted,
+          pricePerUnit: item.meta.display_price.with_tax.unit.amount,
+          description: item.description,
         }
       })
+      console.log(cleanData)
+      // dispatch.cart.setTotalPrice(this.select.total)
       dispatch.cart.setCartItems(cleanData)
-      dispatch.cart.setTotalPrice(cleanData)
-    }
+    },
+    async addItem(payload, rootState) {
+      await request.post(`/carts/123456/items`, {
+        data: payload
+      })
+      await dispatch.cart.getCartItemsAsync()
+    },
+    async deleteItem(payload, rootState) {
+      await request.delete(`/carts/123456/items/${payload.id}`)
+      await dispatch.cart.getCartItemsAsync()
+    },
 
 
-  })
+  }),
+  selectors: {
+    getTotal() {
+      return (rootState, props) => 
+        // sum array / object in javascript
+        rootState.reduce((a, b) => a + (b.pricePerUnit * b.amount),0)
+    },
+  }
 }

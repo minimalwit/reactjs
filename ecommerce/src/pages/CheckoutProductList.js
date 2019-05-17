@@ -5,36 +5,21 @@ import {
   Heading,
   Text,
   Stack,
-  Button,
 } from 'grommet'
-import { Shop } from 'grommet-icons'
+// import { Shop } from 'grommet-icons'
 import { connect } from 'react-redux'
 
-class ProductItem extends React.Component {
-  handleAddToCart = async() => {
-    console.log('Add to cart')
-    const {
-      addItem,
-      // name,
-      id,
-    } = this.props;
-
-    // addItem(name)
-    // addItem(id)
-    await addItem({
-      id,
-      quantity: 1,
-      type: 'cart_item',
-    });
-  }
-
+class CheckoutProductList extends React.Component {
   render() {
     const { name, description, image, price } = this.props
     return (
       <Box
         direction="column"
-        basis="medium"
+        //basis="medium"
+        basis="auto"
         pad="small"
+        border={{ size: 'xsmall' }}
+        flex={false}
       >
         <Box>
           <Stack fill anchor="top-right">
@@ -53,7 +38,6 @@ class ProductItem extends React.Component {
           <Text textAlign="center">
             {description}
           </Text>
-          <Button primary pad="small" margin="small" icon={<Shop />} label="Add to cart" onClick={this.handleAddToCart}/>
         </Box>
       </Box>
     )
@@ -61,15 +45,15 @@ class ProductItem extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state)
+  // console.log(state)
   return {
     state
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-    // addItem: dispatch.cart.addCartItemsAsync,
-    addItem: dispatch.cart.addItem
+    addItem: dispatch.cart.addCartItemsAsync,
+    // addItem: dispatch.cart.addItem
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(ProductItem)
+export default connect(mapStateToProps, mapDispatchToProps)(CheckoutProductList)

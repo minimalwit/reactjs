@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux'
-import { Box, Stack, Image, Text,Heading } from 'grommet'
-
+import { Box, InfiniteScroll } from 'grommet'
+import CheckoutProductList from './CheckoutProductList'
+import CheckoutForm from '../components/CheckoutForm'
 
 class CheckoutPage extends Component {
 
@@ -10,36 +11,32 @@ class CheckoutPage extends Component {
   }
 
   render() {
-    const { name, description, image, price } = this.props
+    const { cartItems } = this.props
     return (
       <Box 
         direction="row"
         pad="small"
         >
-        <Box width="medium">
-        <Box>
-          <Stack fill anchor="top-right">
-            <Box height="small">
-              <Image fit="cover" src={image} />
-            </Box>
-            <Box background="brand" pad="xsmall">
-              <Text>{price}</Text>
-            </Box>
-          </Stack>
-        </Box>
-        <Box align="center">
-          <Heading textAlign="center" level={4} margin={{vertical: 'xsmall'}}>
-            {name}
-          </Heading>
-          <Text textAlign="center">
-            {description}
-          </Text>
+          <Box
+            width="medium"
+           //height="medium"
+            pad="small"
+            overflow="auto"
+          >
+          <InfiniteScroll items={[...cartItems]}>
+            {(product) => (
+            
+            //  cartItems.map((product) => (
+                  <CheckoutProductList {...product} />
+            //  ))
+            
+            )}
+          </InfiniteScroll>
           </Box>
+        <Box flex pad="medium">
+            <CheckoutForm/>
         </Box>
-        <Box flex>
-            form
-        </Box>
-
+        
       </Box>
     )
   }

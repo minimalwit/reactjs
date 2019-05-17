@@ -2,6 +2,9 @@ import axios from 'axios'
 const KEY = 'motlin-token'
 const CLIENT_ID = 'odQgKWYJGxwSwAeoVTRoB9wQpIafiDlL1Olb7QFyrX'
 const instance = axios.create({
+  headers: {
+    'Content-Type': 'application/json'
+  },
   baseURL: 'https://api.moltin.com/v2'
 });
 

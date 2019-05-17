@@ -5,6 +5,17 @@ import { Shop } from 'grommet-icons'
 import { connect } from 'react-redux';
 import CartItemList from './CartItemList';
 class ShoppingCartButton extends Component {
+
+
+  componentDidMount() {
+    // const {
+    //   updateCart,
+    // } = this.props;
+    // updateCart()
+    this.props.getCartItems()
+  }
+
+
   render() {
     const {
       cartLength
@@ -21,10 +32,9 @@ class ShoppingCartButton extends Component {
             <Box pad="small">
                 <Button 
                   primary 
+                  label='Checkout'
                   onClick={()=> this.props.history.push('/checkout')}
-                >
-                  Checkout
-                </Button>
+                />
             </Box>
           </Box>
         }
@@ -52,4 +62,11 @@ const mapStateToProps = state => {
     cartLength: state.cart.cartItems.length
   }
 }
-export default connect(mapStateToProps)(withRouter(ShoppingCartButton))
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getCartItems: dispatch.cart.getCartItemsAsync,
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(withRouter(ShoppingCartButton))
