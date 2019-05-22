@@ -1,0 +1,127 @@
+.app-grid {
+  display: inline-grid;
+  grid-template-columns: auto;
+  grid-template-rows: 600px 800px;
+}
+
+.app-top{
+  display:flex;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+.app-bottom{
+  display:flex;
+  flex: grow;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.row {
+  flex-direction: row;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.column-side {
+  flex    : 50%;
+  flex-direction: column;
+  /* padding: 10px; */
+  height: 600px;
+}
+
+.white {
+  color: white;
+}
+
+.dark-1 {
+  background-color: #333333;
+}
+
+
+.light-1 {
+  background-color: #6e6e6e;
+}
+
+.light-2 {
+  background-color: #e0e0e0;
+}
+
+
+.grid {
+  display : inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 10% 100px 20px 100px 100px 100px;
+}
+
+.label {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.username {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.password {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.form-button {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+.grow{
+  flex:grow;
+}
+
+::placeholder {
+  color: #979797;
+  opacity: 1; /* Firefox */
+  font-weight: 500;
+}
+
+.input{
+  /* width: 50px; */
+  height: 30px;
+  font-size: x-large;
+  padding: 5px;
+}
+
+.input-button{
+  height: 50px;
+  font-size: x-large;
+  cursor: pointer;
+  background-color: #7768ff;
+  border: none;
+  /* padding: 15px 32px; */
+}
+
+
+.center-self{
+  align-self: center;
+  justify-self: center;
+}
+
+.center-item{
+  align-items: center;
+  /* justify-self: center; */
+}
+
+.stretch{
+  align-items: stretch;
+  justify-items: stretch;
+}
+

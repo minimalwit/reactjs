@@ -5,13 +5,14 @@ import axios from 'axios'
 const instance = axios.create({
 
     headers: {
-        'Access-Control-Allow-Origin': 'http://localhost:3000',
-        // 'Access-Control-Allow-Methods' : 'GET',
+        'Access-Control-Allow-Origin': '*',
+    //     // 'Access-Control-Allow-Methods' : 'GET',
         'Access-Control-Allow-Headers': 'Access-Control-Allow-Origin',
-        // 'Content-Type': 'application/json'
+        // 'Content-Type': 'application/json',
+        'Content-Type':'multipart/form-data; boundary=--------------------------578420666918925589688306',
       },
 
-  baseURL: 'https://www.carqueryapi.com/api/0.3'
+  baseURL: 'https://assignment-api.dev.witsawa.com'
 });
 
 // const implicitLogin = async () => {
