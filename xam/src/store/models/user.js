@@ -3,7 +3,8 @@ import request from '../../utils/request'
 export const user = {
   state: {
     // isAuthenticated : false,
-    token: null
+    token: null,
+    isShowExpense: false
   },
   reducers: {
     // // setAuthenticated(state, payload) {
@@ -13,96 +14,63 @@ export const user = {
     //   }
     // },
     setToken (state,payload) {
+      if(payload!==null){
+        return {
+          ...state,
+          token: payload,
+          isShowExpense: true
+        }
+      }
       return {
         ...state,
-        token: payload
+        token: payload,
+        isShowExpense: false
       }
+      
     },
 
   },
   effects: (dispatch) => ({
-    async login(payload, rootState) {
-      console.log(payload)
 
-      // const token = 'akljhdfklhasdkf56546798'
-      const header = {
-        headers: { 
-          'Accept': 'application/json',
-          'Content-Type': 'application/json' 
-        },  
-      }
-      const userInfo = {
-        method: 'POST',
-        'data': payload
-      }
-      const res = await request.post ('/carts/123456/items',userInfo,header)
-      if (res){
-      // if (payload.username ==='test' && payload.password==='test' ) {
-        // dispatch.class.reducer
-        // return dispatch.user.setAuthenticated(true)
-        const token = res.data.data.map((item) => {
-          return {
-            id: item._id,
-          }
-        })
-        return dispatch.user.setToken(token)
-      }
-      return Promise.reject('Username or password not found')
+    async getLogin(payload,rootState){
+      // get username/password by id
+      const id='5ce62da5bd19770013f34f19'
+      // console.log(payload)
+      const res = await request.get(`/users/${id}`)
+      console.log('get login info')
+      console.log("username : "+res.data.username)
+      console.log("password : "+res.data.password)
     },
 
-    async getLogic(payload,rootState){
-
-    },
-
-    async doLogin(payload,rootState){
-      const userInfo = {
-        method: 'POST',
-        data: {
-          username: 'myname',
-          password: 'mypassword'
-        }
+    async login(payload,rootState){
+      const info = {
+          username  : 'test33',
+          password  : 'test33'
       }
-      console.log(userInfo)
-      const res = await request.post('/users/login',userInfo)
-      console.log(res)
+      console.log(info)
+      // console.log(payload)
+      const res = await request.post('/users/login',info)
+      const token = res.data._id
+      console.log(token)
+      dispatch.user.setToken(token)
+      // dispatch.user.toggleShowExpense()
+      // console.log(res)
+      // dispatch.user.getLogin()
     },
 
 
     async signup(payload, rootState) {
-      // const token = 'akljhdfklhasdkf56546798'
-      // if (payload.username ==='qqq' && payload.password==='qqq' ) {
-      //   // dispatch.class.reducer
-      //   // return dispatch.user.setAuthenticated(true)
-      //   return dispatch.user.setToken(token)
-      // }
-      // return Promise.reject('Username or password not found')
-
-      console.log(payload)
-
-      // const token = 'akljhdfklhasdkf56546798'
-      const header = {
-        headers: { 
-          'Accept': 'application/json',
-          'Content-Type': 'application/json' 
-        },  
+      const info = {
+        username  : 'test33',
+        password  : 'test33'
       }
-      const userInfo = {
-        method: 'POST',
-        'data': payload
-      }
-      const res = await request.post ('/carts/123456/items',userInfo,header)
-      if (res){
-      // if (payload.username ==='test' && payload.password==='test' ) {
-        // dispatch.class.reducer
-        // return dispatch.user.setAuthenticated(true)
-        const token = res.data.data.map((item) => {
-          return {
-            id: item._id,
-          }
-        })
-        return dispatch.user.setToken(token)
-      }
-      return Promise.reject('Username or password not found')
+      console.log(info)
+      // console.log(payload)
+      const res = await request.post('/users',info)
+      // const token = res.data._id
+      // console.log(token)
+      // dispatch.user.setToken(token)
+      console.log(res)
 
     },
 

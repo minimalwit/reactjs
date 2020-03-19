@@ -6,10 +6,8 @@ const instance = axios.create({
 
     headers: {
         'Access-Control-Allow-Origin': '*',
-    //     // 'Access-Control-Allow-Methods' : 'GET',
-        'Access-Control-Allow-Headers': 'Access-Control-Allow-Origin',
-        // 'Content-Type': 'application/json',
-        'Content-Type':'multipart/form-data; boundary=--------------------------578420666918925589688306',
+        'Content-Type': 'application/json; charset=utf-8',
+        // 'Content-Type':'multipart/form-data; boundary=--------------------------578420666918925589688306',
       },
 
   baseURL: 'https://assignment-api.dev.witsawa.com'

@@ -24,9 +24,9 @@ class signup extends Component {
     } = this.props;
     try {
       await signup(this.state)
-      alert('login success')
+      console.log('signup success')
     } catch (e) {
-      alert('login fail')
+      console.log('signup fail')
     }
   }
 
@@ -36,7 +36,7 @@ class signup extends Component {
   render() {
     return (
       <div className='column-side grid
-                      center-item 
+                      center-item height-top
                       light-2'>
         <p className='label 
                       grow 
@@ -47,12 +47,12 @@ class signup extends Component {
 
         <input  type='text'
                 name='username'
-                className='username input' 
+                className='username input-front' 
                 placeholder="Username"
                 onChange={this.handleChange}/>
         <input  type='text'
                 name='password'
-                className='password input' 
+                className='password input-front' 
                 placeholder="Password"
                 onChange={this.handleChange}/>
         <input  type="button" 

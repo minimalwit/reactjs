@@ -23,27 +23,38 @@ class login extends Component {
     const {
       // login
       // getLogin
-      doLogin
+      login
     } = this.props;
     
     try {
       // await login(this.state)
-      await doLogin(this.state)
-      alert('login success')
+      await login(this.state)
+      console.log('login success')
     } catch (e) {
-      alert('login fail')
+      console.log('login fail')
     }
   }
 
+  handleLogout = () =>{
+    const {
+      logout
+    } = this.props
+    logout()
+  }
 
+
+  // onClick={() => this.props.handleToggle()}
   //<p className='username grow light-2'>Username</p>
   //<p className='password grow light-2'>Password</p>
   render() {
+    const {
+      isShowExpense
+    } = this.props.user
+
     return (
       <div className='column-side grid
-                      center-item 
-                      light-1'
-            onClick={() => this.props.handleToggle()}>
+                      center-item height-top
+                      light-1'>
         <p className='label 
                       grow 
                       center-self
@@ -53,33 +64,41 @@ class login extends Component {
 
         <input  type='text'
                 name='username'
-                className='username input' 
+                className='username input-front' 
                 placeholder="Username"
                 onChange={this.handleChange}/>
         <input  type='text'
                 name='password'
-                className='password input' 
+                className='password input-front' 
                 placeholder="Password"
                 onChange={this.handleChange}/>
+        {!isShowExpense ?
         <input  type="button" 
                 className='form-button input-button'
                 value='Sign in'
                 onClick={this.handleLogin}/>
+        : 
+        <input  type="button" 
+                className='form-button input-button'
+                value='Sign out'
+                onClick={this.handleLogout}/>
+        }
 
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-
-})
+const mapStateToProps = state => {
+  return state
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     // login: dispatch.user.login
     // getLogin: dispatch.user.getLogin
-    doLogin: dispatch.user.doLogin
+    login : dispatch.user.login,
+    logout: dispatch.user.logout
   }
 }
 

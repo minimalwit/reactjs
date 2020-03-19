@@ -9,6 +9,7 @@ import './css/logup.css'
 
 import Login from './components/login'
 import Signup from './components/signup'
+import Expense from './components/expense'
 
 // function App() {
 //   return (
@@ -22,32 +23,33 @@ class App extends Component {
 
 
   state = {
-    isToggle : false,
+    isShowLogin:  false
   }
 
-  handleToggle = () => {
-    // console.log(this.state.isToggle)
-    this.setState({ 
-      isToggle : (this.state.isToggle)?false:true
-    })
-  }
-
+// <div className='app-top'>
+//               <Login />
+//               <Signup/>
+//             </div>
+// {isShowExpense &&
+            // {/* /{isShowExpense && */}
   render () {
     const {
-      isToggle
-    } = this.state
-
+      isShowExpense
+    } = this.props.user
+    console.log(isShowExpense)
     return (
           <div className='app-grid '>
+            
+            {this.state.isShowLogin &&
             <div className='app-top'>
-              <Login handleToggle={this.handleToggle}/>
+              <Login />
               <Signup/>
             </div>
-            {isToggle &&
-              <div className='app-bottom dark-1'>
-              <div className='column grow  '>
-                  App Expense
-              </div>
+            }
+
+            {true &&
+            <div className='app-top column dark-1'>
+              <Expense/>
             </div>
             }
           </div>
@@ -57,6 +59,7 @@ class App extends Component {
 
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return state
 }
 const mapDispatchToProps = (dispatch) => {

@@ -1,7 +1,8 @@
 .app-grid {
-  display: inline-grid;
+  display: grid;
   grid-template-columns: auto;
-  grid-template-rows: 600px 800px;
+  grid-template-rows: 600px 700px; /* include login-signup */
+  /* grid-template-rows: 700px 800px; /* App Expense only */
 }
 
 .app-top{
@@ -9,6 +10,7 @@
   grid-row-start: 1;
   grid-row-end: 2;
 }
+
 .app-bottom{
   display:flex;
   flex: grow;
@@ -28,6 +30,9 @@
   flex    : 50%;
   flex-direction: column;
   /* padding: 10px; */
+}
+
+.height-top {
   height: 600px;
 }
 
@@ -93,7 +98,7 @@
   font-weight: 500;
 }
 
-.input{
+.input-front{
   /* width: 50px; */
   height: 30px;
   font-size: x-large;
@@ -118,6 +123,16 @@
 .center-item{
   align-items: center;
   /* justify-self: center; */
+}
+
+.align-item-between{
+  align-items: center;
+  /* justify-items: ; */
+}
+
+.justify-item-center{
+  justify-items: center;
+  /* justify-items: ; */
 }
 
 .stretch{
