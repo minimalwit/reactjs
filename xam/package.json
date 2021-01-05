@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@rematch/core": "^1.1.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "grommet": "^2.7.0",
     "grommet-icons": "^4.2.0",
     "grommet-styles": "^0.2.0",
